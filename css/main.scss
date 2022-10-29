@@ -29,13 +29,14 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
     height: 100vh;
 
     .playerNames {
         display: flex;
         flex-direction: row;
         gap: 10px;
+        width: 300px;
 
         .team {
             display: flex;
