@@ -42,13 +42,22 @@ main {
             justify-content: left;
             flex-direction: column;
 
-            &:nth-child(2) {
-                align-items: flex-end;
-            }
-
             span {
                 text-transform: uppercase;
                 font-size: small;
+                font-weight: 600;
+            }
+
+            &:nth-child(2) {
+
+                span {
+                    text-align: right;
+                }
+            }
+
+            p {
+                text-align: center;
+                font-size: 64px;
                 font-weight: 600;
             }
         }
@@ -197,6 +206,11 @@ main {
 
     &.black {
         background-color: rgb(40, 40, 40);
+        color: white;
+    }
+
+    &.gray {
+        background-color: rgb(80, 80, 80);
         color: white;
     }
 }

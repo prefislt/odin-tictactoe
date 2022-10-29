@@ -14,10 +14,12 @@
             <div class="team">
                 <span>TEAM X</span>
                 <input type="text" placeholder="Player X" id="playerX">
+                <p id="scoreX">0</p>
             </div>
             <div class="team">
                 <span>TEAM O</span>
                 <input type="text" placeholder="Player O" id="playerO">
+                <p id="scoreO">0</p>
             </div>
         </div>
         <div class="gameboard">
@@ -36,6 +38,7 @@
         </div>
         <div class="end-screen" id="end-screen">
             <div class="endMessage" id="endMessage"></div>
+            <button class="button gray" id="nextRoundButton" onclick="nextRound();">Next Round</button>
             <button class="button" id="restartButton" onclick="restartGame();">Restart</button>
         </div>
     </main>

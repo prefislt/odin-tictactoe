@@ -2,6 +2,7 @@
 // [X] Add ability to add X's or O's turn by turn.
 // [X] Check for win or draw every turn.
 // [X] Show end screen if won or draw.
+// [X] Add player names.
 // [ ] Add selection who start first X or O.
 // [ ] Add option for AI player.
 
@@ -9,6 +10,11 @@
 const boxElements = document.querySelectorAll('[data-box]');
 
 let gameBoard = ['', '', '', '', '', '', '', '', ''];
+
+let move = true; // If true O start first. If false X start first.
+let moveCount = 0;
+let scoreX = 0;
+let scoreO = 0;
 
 const winCombos = [
     [0, 3, 6],
@@ -24,9 +30,6 @@ const winCombos = [
 boxElements.forEach(box => {
     box.addEventListener('click', handleClick, { once: true })
 })
-
-let move = true; // If true O start first. If false X start first.
-let moveCount = 0;
 
 if (move == true) {
     document.querySelector(".gameboard").classList.remove("x");
@@ -77,6 +80,8 @@ function checkResult() { // Check if win or draw
         playerO = "Player O";
     }
 
+    let won = false;
+
     winCombos.forEach(combo => {
         let x = 0;
         let o = 0;
@@ -89,21 +94,26 @@ function checkResult() { // Check if win or draw
 
             if (x == 3) {
                 endGame(playerX, 1);
+                scoreX++;
+                won = true;
             }
             if (o == 3) {
                 endGame(playerO, 2);
-            }
-            if (moveCount == 9 && o < 3 && x < 3) {
-                endGame(null, 0);
+                scoreO++;
+                won = true;
             }
         });
     });
+    if (won == false && moveCount == 9) {
+        endGame(null, 0);
+    }
+
+    updateScore();
 }
 
-function restartGame() {
+function nextRound() {
     gameBoard = ['', '', '', '', '', '', '', '', ''];
     moveCount = 0;
-
     boxElements.forEach(box => {
         box.removeEventListener('click', handleClick);
         box.addEventListener('click', handleClick, { once: true });
@@ -115,6 +125,13 @@ function restartGame() {
     document.querySelector("#end-screen").classList.remove("show");
 }
 
+function restartGame() {
+    scoreX = 0;
+    scoreO = 0;
+    updateScore();
+    nextRound();
+}
+
 function endGame(name, status) {
     if(status == 0) {
         document.querySelector("#endMessage").innerHTML = "It's a draw!"
@@ -122,4 +139,9 @@ function endGame(name, status) {
         document.querySelector("#endMessage").innerHTML = `${name} won!`;
     }
     document.querySelector("#end-screen").classList.add("show");
+}
+
+function updateScore() {
+    document.querySelector("#scoreX").innerHTML = scoreX;
+    document.querySelector("#scoreO").innerHTML = scoreO;
 }

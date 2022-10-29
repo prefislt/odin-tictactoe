@@ -41,12 +41,17 @@ main .playerNames .team {
   justify-content: left;
   flex-direction: column;
 }
-main .playerNames .team:nth-child(2) {
-  align-items: flex-end;
-}
 main .playerNames .team span {
   text-transform: uppercase;
   font-size: small;
+  font-weight: 600;
+}
+main .playerNames .team:nth-child(2) span {
+  text-align: right;
+}
+main .playerNames .team p {
+  text-align: center;
+  font-size: 64px;
   font-weight: 600;
 }
 main .playerNames input {
@@ -159,5 +164,9 @@ main .end-screen.show {
 }
 .button.black {
   background-color: rgb(40, 40, 40);
+  color: white;
+}
+.button.gray {
+  background-color: rgb(80, 80, 80);
   color: white;
 }/*# sourceMappingURL=main.css.map */
