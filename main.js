@@ -26,7 +26,6 @@ boxElements.forEach(box => {
 })
 
 let move = true; // If true O start first. If false X start first.
-let status = 0; // 0 - continue, 1 - X win, 2 - O win, 3 - draw.
 let moveCount = 0;
 
 if (move == true) {
@@ -87,20 +86,24 @@ function checkResult() { // Check if win or draw
                 document.querySelector("#endMessage").innerHTML = "O won!"
                 document.querySelector("#end-screen").classList.add("show");
             }
+            if (moveCount == 9 && o < 3 && x < 3) {
+                document.querySelector("#endMessage").innerHTML = "It's draw!"
+                document.querySelector("#end-screen").classList.add("show");
+            }
         });
     });
-    if (moveCount == 9 && o < 3 && x < 3) {
-        document.querySelector("#endMessage").innerHTML = "It's draw!"
-        document.querySelector("#end-screen").classList.add("show");
-    }
 }
 
 function restartGame() {
     gameBoard = ['', '', '', '', '', '', '', '', ''];
+    moveCount = 0;
 
     boxElements.forEach(box => {
+        box.removeEventListener('click', handleClick);
+        box.addEventListener('click', handleClick, { once: true });
         box.classList.remove("x");
         box.classList.remove("o");
+
     })
 
     document.querySelector("#end-screen").classList.remove("show");
