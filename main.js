@@ -66,6 +66,17 @@ function handleClick(e) {
 }
 
 function checkResult() { // Check if win or draw
+
+    playerX = document.querySelector("#playerX").value;
+    playerO = document.querySelector("#playerO").value;
+
+    if (playerX == "") {
+        playerX = "Player X";
+    }
+    if (playerO == "") {
+        playerO = "Player O";
+    }
+
     winCombos.forEach(combo => {
         let x = 0;
         let o = 0;
@@ -77,18 +88,13 @@ function checkResult() { // Check if win or draw
             }
 
             if (x == 3) {
-                console.log("X laimėjo");
-                document.querySelector("#endMessage").innerHTML = "X won!"
-                document.querySelector("#end-screen").classList.add("show");
+                endGame(playerX, 1);
             }
             if (o == 3) {
-                console.log("O laimėjo");
-                document.querySelector("#endMessage").innerHTML = "O won!"
-                document.querySelector("#end-screen").classList.add("show");
+                endGame(playerO, 2);
             }
             if (moveCount == 9 && o < 3 && x < 3) {
-                document.querySelector("#endMessage").innerHTML = "It's draw!"
-                document.querySelector("#end-screen").classList.add("show");
+                endGame(null, 0);
             }
         });
     });
@@ -107,4 +113,13 @@ function restartGame() {
     })
 
     document.querySelector("#end-screen").classList.remove("show");
+}
+
+function endGame(name, status) {
+    if(status == 0) {
+        document.querySelector("#endMessage").innerHTML = "It's a draw!"
+    } else {
+        document.querySelector("#endMessage").innerHTML = `${name} won!`;
+    }
+    document.querySelector("#end-screen").classList.add("show");
 }

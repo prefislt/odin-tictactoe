@@ -7,6 +7,13 @@
   box-sizing: border-box;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
 :root {
   --box-size: 100px;
   --mark-size: calc(var(--box-size) * 0.9);
@@ -18,9 +25,36 @@ body {
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 50px;
   height: 100vh;
+}
+main .playerNames {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+main .playerNames .team {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+}
+main .playerNames .team:nth-child(2) {
+  align-items: flex-end;
+}
+main .playerNames .team span {
+  text-transform: uppercase;
+  font-size: small;
+  font-weight: 600;
+}
+main .playerNames input {
+  text-align: center;
+  font-weight: 600;
+  padding: 5px;
+  border: 2px solid #000;
+  border-radius: 5px;
 }
 main .gameboard {
   display: grid;
@@ -104,7 +138,11 @@ main .end-screen {
 main .end-screen .endMessage {
   font-size: 64px;
 }
-main .end-screen button {
+main .end-screen.show {
+  display: flex;
+}
+
+.button {
   border-radius: 5px;
   padding: 10px;
   font-size: large;
@@ -113,12 +151,13 @@ main .end-screen button {
   transition: 150ms ease-in-out;
   cursor: pointer;
 }
-main .end-screen button:hover {
+.button:hover {
   transform: scale(0.95);
 }
-main .end-screen button:active {
+.button:active {
   transform: scale(0.9);
 }
-main .end-screen.show {
-  display: flex;
+.button.black {
+  background-color: rgb(40, 40, 40);
+  color: white;
 }/*# sourceMappingURL=main.css.map */

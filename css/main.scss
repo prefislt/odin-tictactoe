@@ -8,6 +8,13 @@
     box-sizing: border-box;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 :root {
     --box-size: 100px; // Tic Tac Toe grid box sizes
     --mark-size: calc(var(--box-size) * 0.9); // For smaller X's and O's
@@ -19,9 +26,41 @@ body {
 
 main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 50px;
     height: 100vh;
+
+    .playerNames {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        .team {
+            display: flex;
+            justify-content: left;
+            flex-direction: column;
+
+            &:nth-child(2) {
+                align-items: flex-end;
+            }
+
+            span {
+                text-transform: uppercase;
+                font-size: small;
+                font-weight: 600;
+            }
+        }
+
+        input {
+            text-align: center;
+            font-weight: 600;
+            padding: 5px;
+            border: 2px solid #000;
+            border-radius: 5px;
+        }
+    }
 
     .gameboard {
         display: grid;
@@ -132,27 +171,32 @@ main {
         .endMessage {
             font-size: 64px;
         }
-    
-        button {
-            border-radius: 5px;
-            padding: 10px;
-            font-size: large;
-            font-weight: 600;
-            background-color: #fff;
-            transition: 150ms ease-in-out;
-            cursor: pointer;
-            
-            &:hover {
-                transform: scale(0.95);
-            }
-
-            &:active {
-                transform: scale(0.9);
-            }
-        }
 
         &.show {
             display: flex;
         }
+    }
+}
+
+.button {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: large;
+    font-weight: 600;
+    background-color: #fff;
+    transition: 150ms ease-in-out;
+    cursor: pointer;
+    
+    &:hover {
+        transform: scale(0.95);
+    }
+
+    &:active {
+        transform: scale(0.9);
+    }
+
+    &.black {
+        background-color: rgb(40, 40, 40);
+        color: white;
     }
 }

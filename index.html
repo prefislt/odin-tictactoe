@@ -10,6 +10,16 @@
 </head>
 <body>
     <main>
+        <div class="playerNames">
+            <div class="team">
+                <span>TEAM X</span>
+                <input type="text" placeholder="Player X" id="playerX">
+            </div>
+            <div class="team">
+                <span>TEAM O</span>
+                <input type="text" placeholder="Player O" id="playerO">
+            </div>
+        </div>
         <div class="gameboard">
             <div class="box" id="0" data-box></div>
             <div class="box" id="1" data-box></div>
@@ -21,9 +31,12 @@
             <div class="box" id="7" data-box></div>
             <div class="box" id="8" data-box></div>
         </div>
+        <div class="buttons">
+            <button class="button black" id="restartButton" onclick="restartGame();">Restart</button>
+        </div>
         <div class="end-screen" id="end-screen">
             <div class="endMessage" id="endMessage"></div>
-            <button id="restartButton" onclick="restartGame();">Restart</button>
+            <button class="button" id="restartButton" onclick="restartGame();">Restart</button>
         </div>
     </main>
 </body>
