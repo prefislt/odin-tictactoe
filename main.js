@@ -31,41 +31,29 @@ boxElements.forEach(box => {
     box.addEventListener('click', handleClick, { once: true })
 })
 
-if (move == true) {
-    document.querySelector(".gameboard").classList.remove("x");
-    document.querySelector(".gameboard").classList.add("o");
+if (move) {
+    playerMove(0); // O
 } else {
-    document.querySelector(".gameboard").classList.remove("o");
-    document.querySelector(".gameboard").classList.add("x");
+    playerMove(1); // X
 }
 
 function handleClick(e) {
     move = !move;
     moveCount++;
 
-    if (move == true) {
-        document.querySelector(".gameboard").classList.remove("x");
-        document.querySelector(".gameboard").classList.add("o");
-    } else {
-        document.querySelector(".gameboard").classList.remove("o");
-        document.querySelector(".gameboard").classList.add("x");
-    }
-
     let id = e.target.id;
 
-    if (move == true) {
+    if (move) {
+        playerMove(0);
         document.getElementById(id).classList.add("x");
         gameBoard[id] = "X";
     } else {
+        playerMove(1);
         document.getElementById(id).classList.add("o");
         gameBoard[id] = "O";
     }
 
     checkResult();
-
-    console.log(gameBoard);
-
-
 }
 
 function checkResult() { // Check if win or draw
@@ -146,4 +134,17 @@ function endGame(name, status) {
 function updateScore() {
     document.querySelector("#scoreX").innerHTML = scoreX;
     document.querySelector("#scoreO").innerHTML = scoreO;
+}
+
+function playerMove(x) {
+    const gameboard = document.querySelector(".gameboard");
+
+    if (x) {
+        gameboard.classList.remove("o");
+        gameboard.classList.add("x");
+    } else {
+        gameboard.classList.remove("x");
+        gameboard.classList.add("o");
+    }
+    
 }
