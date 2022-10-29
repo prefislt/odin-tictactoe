@@ -126,10 +126,12 @@ function nextRound() {
 }
 
 function restartGame() {
-    scoreX = 0;
-    scoreO = 0;
-    updateScore();
-    nextRound();
+    if (confirm("You sure you want to restart? Scores will be wiped.") == true) {
+        scoreX = 0;
+        scoreO = 0;
+        updateScore();
+        nextRound();
+    }
 }
 
 function endGame(name, status) {
