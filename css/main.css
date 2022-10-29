@@ -80,21 +80,29 @@ main .gameboard .box.o::after, main .gameboard.o .box:hover:not(.x):not(.o)::aft
 main .gameboard.x .box:hover:not(.x):not(.o)::before, main .gameboard.x .box:hover:not(.x):not(.o)::after {
   background-color: rgb(205, 205, 205);
 }
+main .gameboard.o .box:hover:not(.x):not(.o)::before {
+  background-color: rgb(205, 205, 205);
+}
 main .gameboard .box.x, main .gameboard .box.o {
   cursor: not-allowed;
 }
 main .end-screen {
   position: absolute;
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.85);
   color: #fff;
   font-weight: 800;
   gap: 20px;
   align-items: center;
   justify-content: center;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+main .end-screen .endMessage {
+  font-size: 64px;
 }
 main .end-screen button {
   border-radius: 5px;
@@ -105,10 +113,12 @@ main .end-screen button {
   transition: 150ms ease-in-out;
   cursor: pointer;
 }
+main .end-screen button:hover {
+  transform: scale(0.95);
+}
 main .end-screen button:active {
   transform: scale(0.9);
 }
-
-.hide {
-  display: none !important;
+main .end-screen.show {
+  display: flex;
 }/*# sourceMappingURL=main.css.map */
