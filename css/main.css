@@ -37,6 +37,7 @@ main .gameboard .box {
   border: 2px solid #000;
   width: var(--box-size);
   height: var(--box-size);
+  cursor: pointer;
 }
 main .gameboard .box:nth-child(1), main .gameboard .box:nth-child(2), main .gameboard .box:nth-child(3) {
   border-top: none;
@@ -50,20 +51,20 @@ main .gameboard .box:nth-child(3n+3) {
 main .gameboard .box:nth-child(7), main .gameboard .box:nth-child(8), main .gameboard .box:nth-child(9) {
   border-bottom: none;
 }
-main .gameboard .box.x::before, main .gameboard .box.x::after {
+main .gameboard .box.x::before, main .gameboard .box.x::after, main .gameboard.x .box:hover:not(.x):not(.o)::before, main .gameboard.x .box:hover:not(.x):not(.o)::after {
   position: absolute;
   content: "";
   width: var(--mark-size);
   height: calc(var(--mark-size) * 0.15);
   background-color: black;
 }
-main .gameboard .box.x::before {
+main .gameboard .box.x::before, main .gameboard.x .box:hover:not(.x):not(.o)::before {
   transform: rotate(45deg);
 }
-main .gameboard .box.x::after {
+main .gameboard .box.x::after, main .gameboard.x .box:hover:not(.x):not(.o)::after {
   transform: rotate(-45deg);
 }
-main .gameboard .box.o::before, main .gameboard .box.o::after {
+main .gameboard .box.o::before, main .gameboard .box.o::after, main .gameboard.o .box:hover:not(.x):not(.o)::before, main .gameboard.o .box:hover:not(.x):not(.o)::after {
   position: absolute;
   content: "";
   border-radius: 100%;
@@ -71,10 +72,16 @@ main .gameboard .box.o::before, main .gameboard .box.o::after {
   height: calc(var(--mark-size) * 0.9);
   background-color: black;
 }
-main .gameboard .box.o::after {
+main .gameboard .box.o::after, main .gameboard.o .box:hover:not(.x):not(.o)::after {
   background-color: white;
   width: calc(var(--mark-size) * 0.65);
   height: calc(var(--mark-size) * 0.65);
+}
+main .gameboard.x .box:hover:not(.x):not(.o)::before, main .gameboard.x .box:hover:not(.x):not(.o)::after {
+  background-color: rgb(205, 205, 205);
+}
+main .gameboard .box.x, main .gameboard .box.o {
+  cursor: not-allowed;
 }
 main .end-screen {
   position: absolute;

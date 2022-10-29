@@ -39,6 +39,7 @@ main {
             border: 2px solid #000;
             width: var(--box-size);
             height: var(--box-size);
+            cursor: pointer;
 
             &:nth-child(1),
             &:nth-child(2),
@@ -60,35 +61,53 @@ main {
                 border-bottom: none;
             }
 
-            &.x::before, &.x::after {
-                position: absolute;
-                content: "";
-                width: var(--mark-size);
-                height: calc(var(--mark-size) * 0.15);
-                background-color: black;
-            }
+        }
 
-            &.x::before {
-                transform: rotate(45deg);
-            }
-            &.x::after {
-                transform: rotate(-45deg);
-            }
+        .box.x::before, .box.x::after,
+        &.x .box:hover:not(.x):not(.o)::before,
+        &.x .box:hover:not(.x):not(.o)::after {
+            position: absolute;
+            content: "";
+            width: var(--mark-size);
+            height: calc(var(--mark-size) * 0.15);
+            background-color: black;
+        }
 
-            &.o::before, &.o::after {
-                position: absolute;
-                content: "";
-                border-radius: 100%;
-                width: calc(var(--mark-size) * 0.9);
-                height: calc(var(--mark-size) * 0.9);
-                background-color: black;
-            }
+        .box.x::before,
+        &.x .box:hover:not(.x):not(.o)::before {
+            transform: rotate(45deg);
+        }
+        .box.x::after, 
+        &.x .box:hover:not(.x):not(.o)::after {
+            transform: rotate(-45deg);
+        }
 
-            &.o::after {
-                background-color: white;
-                width: calc(var(--mark-size) * 0.65);
-                height: calc(var(--mark-size) * 0.65);
-            }
+
+        .box.o::before, .box.o::after,
+        &.o .box:hover:not(.x):not(.o)::before,
+        &.o .box:hover:not(.x):not(.o)::after {
+            position: absolute;
+            content: "";
+            border-radius: 100%;
+            width: calc(var(--mark-size) * 0.9);
+            height: calc(var(--mark-size) * 0.9);
+            background-color: black;
+        }
+
+        .box.o::after,
+        &.o .box:hover:not(.x):not(.o)::after {
+            background-color: white;
+            width: calc(var(--mark-size) * 0.65);
+            height: calc(var(--mark-size) * 0.65);
+        }
+
+        &.x .box:hover:not(.x):not(.o)::before,
+        &.x .box:hover:not(.x):not(.o)::after {
+            background-color: rgb(205, 205, 205);
+        }
+
+        .box.x, .box.o {
+            cursor: not-allowed;
         }
     }
 
